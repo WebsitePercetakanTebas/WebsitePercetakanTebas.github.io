@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pilih Barang</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            background: linear-gradient(120deg, #f6d365, #fda085);
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            max-width: 600px;
+            padding: 20px;
+            background: yellow;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            position: relative;
+        }
+        .container::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            left: -50px;
+            width: 200px;
+            height: 200px;
+            background: rgba(253, 160, 133, 0.3);
+            border-radius: 50%;
+            z-index: -1;
+        }
+        .container h2 {
+            text-align: center;
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #444;
+            border-bottom: 2px solid #fda085;
+            padding-bottom: 10px;
+        }
+        select, input[type="range"] {
+            width: 100%;
+            padding: 12px;
+            margin: 15px 0;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+        select:hover, input[type="range"]:hover {
+            border-color: #fda085;
+            box-shadow: 0 0 8px rgba(253, 160, 133, 0.5);
+        }
+        .product {
+            text-align: center;
+        }
+        .product img {
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease-in-out;
+        }
+        .product img:hover {
+            transform: scale(1.05);
+        }
+        .product p {
+            font-size: 16px;
+            margin-top: 10px;
+            color: #666;
+        }
+        .slider-container label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 16px;
+            color: #444;
+            font-weight: 500;
+        }
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Pilih Barang</h2>
+        <form>
+            <label for="barang">Daftar Barang:</label>
+            <select id="barang" name="barang" onchange="updateProductInfo()">
+                <option value="barang1" data-desc="Sepatu nyaman untuk olahraga." data-img="https://via.placeholder.com/300x200?text=Sepatu">Barang 1 - Sepatu</option>
+                <option value="barang2" data-desc="Baju kasual yang cocok untuk sehari-hari." data-img="https://via.placeholder.com/300x200?text=Baju">Barang 2 - Baju</option>
+                <option value="barang3" data-desc="Tas elegan untuk bepergian." data-img="https://via.placeholder.com/300x200?text=Tas">Barang 3 - Tas</option>
+                <option value="barang4" data-desc="Topi keren untuk melengkapi gaya Anda." data-img="https://via.placeholder.com/300x200?text=Topi">Barang 4 - Topi</option>
+                <option value="barang5" data-desc="Jam tangan mewah dengan desain modern." data-img="https://via.placeholder.com/300x200?text=Jam+Tangan">Barang 5 - Jam Tangan</option>
+            </select>
+            <div class="product">
+                <img id="productImage" src="https://via.placeholder.com/300x200?text=Sepatu" alt="Produk" style="width: 100%;">
+                <p id="productDescription">Sepatu nyaman untuk olahraga.</p>
+            </div>
+            <div class="slider-container">
+                <label for="imageSize">Atur Ukuran Gambar:</label>
+                <input id="imageSize" type="range" min="50" max="300" value="300" oninput="updateImageSize()">
+            </div>
+        </form>
+        <footer>&copy; 2024 Pilih Barang | Mewah & Elegan</footer>
+    </div>
+
+    <script>
+        function updateProductInfo() {
+            const select = document.getElementById('barang');
+            const selectedOption = select.options[select.selectedIndex];
+            const description = selectedOption.getAttribute('data-desc');
+            const image = selectedOption.getAttribute('data-img');
+
+            document.getElementById('productImage').src = image;
+            document.getElementById('productDescription').textContent = description;
+        }
+
+        function updateImageSize() {
+            const size = document.getElementById('imageSize').value;
+            document.getElementById('productImage').style.width = size + "px";
+        }
+    </script>
+</body>
+</html>
