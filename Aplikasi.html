@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Team Map Structure</title>
+  <style>
+    /* Global Style */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background: #000;
+      overflow-x: hidden;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    /* Starry Background */
+    .background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      overflow: hidden;
+    }
+    .star {
+      position: absolute;
+      background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 60%);
+      width: 3px;
+      height: 3px;
+      animation: sparkle 5s linear infinite;
+      border-radius: 50%;
+    }
+    @keyframes sparkle {
+      0%, 100% {
+        opacity: 0.5;
+        transform: scale(0.8);
+      }
+      50% {
+        opacity: 1;
+        transform: scale(1.5);
+      }
+    }
+
+    /* Map Container */
+    .map-container {
+      text-align: center;
+      position: relative;
+    }
+    .map-container h1 {
+      margin-bottom: 30px;
+      font-size: 36px;
+      text-transform: uppercase;
+      color: #FFD700;
+      text-shadow: 0 0 10px #FFD700;
+    }
+
+    /* Node Structure */
+    .node {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 20px;
+    }
+    .node img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      border: 3px solid #fff;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+      margin-bottom: 10px;
+    }
+    .node h2 {
+      font-size: 20px;
+      margin: 5px 0;
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+    }
+    .node p {
+      font-size: 16px;
+      color: #bbb;
+    }
+
+    /* Connecting Lines */
+    .line {
+      width: 2px;
+      height: 50px;
+      background-color: #fff;
+      margin: 0 auto;
+    }
+
+    /* Layout */
+    .map {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .row {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Background Stars -->
+  <div class="background"></div>
+
+  <!-- Map Content -->
+  <div class="map-container">
+    <h1>Struktur Tim</h1>
+    <div class="map">
+      <!-- Pembimbing -->
+      <div class="node">
+        <img src="https://via.placeholder.com/100" alt="Pembimbing">
+        <h2>Pembimbing: Nuraini</h2>
+        <p>Memberikan arahan dan bimbingan kepada seluruh tim.</p>
+        <div class="line"></div>
+      </div>
+      <!-- Row -->
+      <div class="row">
+        <!-- Desainer -->
+        <div class="node">
+          <img src="https://via.placeholder.com/100" alt="Desainer">
+          <h2>Desainer: Farhan</h2>
+          <p>Membuat desain grafis yang menarik dan optimal.</p>
+        </div>
+        <!-- Admin -->
+        <div class="node">
+          <img src="https://via.placeholder.com/100" alt="Admin">
+          <h2>Admin: Aisyah</h2>
+          <p>Mengelola dokumen dan memastikan administrasi tim.</p>
+        </div>
+        <!-- Operator -->
+        <div class="node">
+          <img src="https://via.placeholder.com/100" alt="Operator">
+          <h2>Operator: Rizky</h2>
+          <p>Melaksanakan tugas teknis untuk mendukung operasional tim.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Generate Stars -->
+  <script>
+    const background = document.querySelector('.background');
+    for (let i = 0; i < 100; i++) {
+      const star = document.createElement('div');
+      star.classList.add('star');
+      const size = Math.random() * 3 + 1;
+      star.style.width = `${size}px`;
+      star.style.height = `${size}px`;
+      star.style.top = `${Math.random() * 100}vh`;
+      star.style.left = `${Math.random() * 100}vw`;
+      star.style.animationDelay = `${Math.random() * 5}s`;
+      background.appendChild(star);
+    }
+  </script>
+</body>
+</html>
